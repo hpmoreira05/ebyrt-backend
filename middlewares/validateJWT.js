@@ -10,7 +10,6 @@ module.exports = async (req, res, next) => {
   }
   try {
     const decoded = jwt.verify(token, secret);
-    console.log(decoded);
     const user = await model.getEmail(decoded.data.email);
     console.log(user);
     if (!user) {
