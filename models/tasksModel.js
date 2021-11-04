@@ -18,11 +18,10 @@ const createTask = async ({ description, userId }) => {
 //   return recipes;
 // };
 
-// const getRecipeByID = async (id) => {
-//   const db = await connection();
-//   const recipe = await db.collection('recipes').findOne(ObjectId(id));
-//   return recipe;
-// };
+const getTaskByUserID = async (_id) => {
+  const recipe = await db.collection('tasks').find({ userId: _id }).toArray();
+  return recipe;
+};
 
 // const editRecipe = async ({ id, name, ingredients, preparation, userId }) => {
 //   const db = await connection();
@@ -31,4 +30,4 @@ const createTask = async ({ description, userId }) => {
 //   return { _id: id, name, ingredients, preparation, userId };
 // };
 
-module.exports = { createTask };
+module.exports = { createTask, getTaskByUserID };
