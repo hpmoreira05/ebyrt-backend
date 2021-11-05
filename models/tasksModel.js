@@ -29,4 +29,10 @@ const editTask = async ({ id, status }) => {
   return teste.value;
 };
 
-module.exports = { createTask, getTaskByUserID, editTask };
+const deleteTask = async (id) => {
+  const exists = await db.collection('tasks').findOne(ObjectId(id));
+  await db.collection('tasks').deleteOne({ _id: ObjectId(id) });
+  return exists;
+};
+
+module.exports = { createTask, getTaskByUserID, editTask, deleteTask };

@@ -33,4 +33,11 @@ const editTask = async ({ id, status }) => {
   return editedTask;
 };
 
-module.exports = { createTask, getTaskByUserID, editTask };
+const deleteTask = async (id) => {
+  if (!ObjectId.isValid(id)) return { err: { code: 404, message: { message: 'Task not found' } } };
+  const data = await Task.deleteTask(id);
+  if (!data) return { err: { code: 404, message: { message: 'Task not found' } } };
+  return data;
+};
+
+module.exports = { createTask, getTaskByUserID, editTask, deleteTask };

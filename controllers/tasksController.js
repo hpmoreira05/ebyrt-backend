@@ -54,4 +54,18 @@ const editTask = async (req, res) => {
   }
 };
 
-module.exports = { createTask, getTaskByUserID, editTask };
+const deleteTask = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const data = await Task.deleteTask(id);
+    if (data.err) {
+      return res.status(data.err.code).json(data.err.message); 
+    }
+     return res.status(200).json(data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Aconteceu erro ao deletar task' });
+  }
+};
+
+module.exports = { createTask, getTaskByUserID, editTask, deleteTask };
