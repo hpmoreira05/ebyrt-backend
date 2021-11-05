@@ -1,4 +1,4 @@
-// const { ObjectId } = require('mongodb');
+const { ObjectId } = require('mongodb');
 const db = require('./connection');
 
 const createTask = async ({ description, userId }) => {
@@ -23,11 +23,10 @@ const getTaskByUserID = async (_id) => {
   return recipe;
 };
 
-// const editRecipe = async ({ id, name, ingredients, preparation, userId }) => {
-//   const db = await connection();
-//   await db.collection('recipes')
-//     .updateOne({ _id: ObjectId(id) }, { $set: { name, ingredients, preparation } });
-//   return { _id: id, name, ingredients, preparation, userId };
-// };
+const editTask = async ({ id, status }) => {
+  const teste = await db.collection('tasks')
+    .findOneAndUpdate({ _id: ObjectId(id) }, { $set: { status } });
+  return teste.value;
+};
 
-module.exports = { createTask, getTaskByUserID };
+module.exports = { createTask, getTaskByUserID, editTask };

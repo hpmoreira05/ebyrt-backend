@@ -39,20 +39,19 @@ const getTaskByUserID = async (req, res) => {
   }
 };
 
-// const editRecipe = async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     const { _id } = req.user;
-//     const { name, ingredients, preparation } = req.body;
-//     const data = await Recipe.editRecipe({ id, userId: _id, name, ingredients, preparation });
-//     if (data.err) {
-//       return res.status(data.err.code).json(data.err.message); 
-//     }
-//      return res.status(200).json(data);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ message: 'Aconteceu erro ao buscar receita' });
-//   }
-// };
+const editTask = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { status } = req.body;
+    const data = await Task.editTask({ id, status });
+    if (data.err) {
+      return res.status(data.err.code).json(data.err.message); 
+    }
+     return res.status(200).json(data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Aconteceu erro ao editar task' });
+  }
+};
 
-module.exports = { createTask, getTaskByUserID };
+module.exports = { createTask, getTaskByUserID, editTask };
