@@ -13,12 +13,6 @@ const createTask = async ({ description, userId, name }) => {
   return { Task: { description, userId, _id: inserted.insertedId } };
 };
 
-// const getRecipes = async () => {
-//   const db = await connection();
-//   const recipes = await db.collection('recipes').find().toArray();
-//   return recipes;
-// };
-
 const getTaskByUserID = async (_id) => {
   const recipe = await db.collection('tasks').find({ userId: _id }).toArray();
   return recipe;

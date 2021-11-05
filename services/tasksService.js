@@ -9,17 +9,11 @@ const createTask = async ({ description, userId, name }) => {
   return task;
 };
 
-// const getRecipes = async () => {
-//   const recipes = await Recipe.getRecipes();
-//   return recipes;
-// };
-
 const getTaskByUserID = async (_id) => {
   if (!ObjectId.isValid(_id)) {
     return { err: { code: 404, message: { message: 'User not found' } } };
   }
   const tasks = await Task.getTaskByUserID(_id);
-  // if (!recipe) return { err: { code: 404, message: { message: 'recipe not found' } } };
   return tasks;
 };
 
