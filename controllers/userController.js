@@ -28,4 +28,18 @@ const getUser = async (req, res) => {
   }
 };
 
-module.exports = { registerUser, getUser };
+const getUserName = async (req, res) => {
+  try {
+    const { _id } = req.user;
+    const data = await User.getUserName(_id);
+    if (data.err) {
+      return res.status(data.err.code).json(data.err.message); 
+    }
+     return res.status(200).json(data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Aconteceu erro ao buscar usuario' });
+  }
+};
+
+module.exports = { registerUser, getUser, getUserName };

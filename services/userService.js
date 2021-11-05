@@ -42,4 +42,9 @@ const getUser = async ({ email, password }) => {
   return { token };
 };
 
-module.exports = { registerUser, getUser };
+const getUserName = async (_id) => {
+  const user = await User.getUserName(_id);
+  return user;
+};
+
+module.exports = { registerUser, getUser, getUserName };

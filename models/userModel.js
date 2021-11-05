@@ -10,4 +10,9 @@ const getEmail = async (email) => {
   return emailVerify;
 };
 
-module.exports = { createUser, getEmail };
+const getUserName = async (_id) => {
+  const userName = await db.collection('users').findOne(_id);
+  return userName.name;
+};
+
+module.exports = { createUser, getEmail, getUserName };

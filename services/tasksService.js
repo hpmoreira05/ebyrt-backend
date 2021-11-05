@@ -1,11 +1,11 @@
 const { ObjectId } = require('mongodb');
 const Task = require('../models/tasksModel');
 
-const createTask = async ({ description, userId }) => {
+const createTask = async ({ description, userId, name }) => {
   if (!description) {
     return { err: { code: 400, message: { message: 'Invalid entries. Try again.' } } };
   }
-  const task = await Task.createTask({ description, userId });
+  const task = await Task.createTask({ description, userId, name });
   return task;
 };
 

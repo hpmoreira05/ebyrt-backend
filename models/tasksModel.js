@@ -1,13 +1,14 @@
 const { ObjectId } = require('mongodb');
 const db = require('./connection');
 
-const createTask = async ({ description, userId }) => {
+const createTask = async ({ description, userId, name }) => {
   const inserted = await db.collection('tasks')
     .insertOne({ 
       description,
       status: 'Pendente',
       createdAt: new Date().toLocaleString('pt-br'),
       userId,
+      userName: name,
     });
   return { Task: { description, userId, _id: inserted.insertedId } };
 };
